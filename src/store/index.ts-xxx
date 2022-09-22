@@ -1,0 +1,39 @@
+import { Model } from "react-model";
+import { Chess, Checkerboard } from "../hooks/chess";
+
+const checkerboard = new Checkerboard(5);
+for (let i = 0; i < 10; i++) {
+  const chess = new Chess(
+    {
+      x: 0,
+      y: 0,
+    },
+    1
+  );
+  console.log(chess.type);
+}
+
+interface GameState {
+  playing: boolean;
+  checkerboard: Checkerboard;
+  chesses: Chess[];
+}
+interface ActionsParams {
+  chooseChess: Chess;
+  start: undefined;
+}
+const GameModel: ModelType<GameState, ActionsParams> = {
+  state: {
+    playing: false,
+    checkerboard,
+    chesses: [],
+  },
+  actions: {
+    chooseChess: (chess) => (state) => state.checkerboard.add(chess),
+    start: () => (state) => (state.playing = true),
+  },
+};
+const store = Model({
+    gameStore: Model(GameModel)
+})
+export const { useStore, actions } = store

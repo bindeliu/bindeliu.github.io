@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
+// import {useStore,actions} from '../store/index'
 import "./play.less";
-const useAudio = (url: string, options: Partial<HTMLAudioElement>) => {
+
+
+export const useAudio = (url: string, options: Partial<HTMLAudioElement>) => {
+//   const [state,actions] = useStore('gameStore')
   const [playing, setPlaying] = useState(false); // 播放暂停
   const [hasBeenClicked, setHasBeenClicked] = useState(false); // 是否点击过
   const [loading, setLoading] = useState(true); // 加载情况
 
   const [audio] = useState(new Audio(url));
-  audio.loop = options.loop || true;
+  audio.loop = options.loop || false
   audio.controls = options.controls || false;
   audio.onload = 
   audio.oncanplaythrough = (env: Event) => {
