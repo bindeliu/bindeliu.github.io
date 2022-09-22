@@ -7,6 +7,25 @@ body {
     height: 100vh;
     background-color: rgb(60, 60, 60);
     padding-top: 35vh;
+    .btn{
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        font-size: 16px;
+        border: 1px solid bisque;
+        background-color: bisque;
+        margin: 50px auto;
+        border-radius: 3px;
+    }
+    .muyu-count{
+        position: absolute;
+        width: 100vw;
+        text-align: center;
+        color: bisque;
+        font-weight: 700;
+        top: 15vh;
+    }
     .muyu {
       background-image: url("../static/muyu.png");
       background-repeat: no-repeat;
@@ -14,12 +33,16 @@ body {
       width: 100px;
       height: 100px;
       margin: 0 auto;
+      transition: transform .5s;
+      &.clicked{
+        transform: rotate(0.03turn);
+    }
     }
     .muyu-text {
       position: absolute;
       left: 50vw;
       top: 30vh;
-      animation-duration: 1s;
+      animation-duration: .6s;
       animation-name: muyutext;
       animation-timing-function:ease-in-out;
       color: antiquewhite;
