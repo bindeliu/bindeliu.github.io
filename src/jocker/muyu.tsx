@@ -53,7 +53,7 @@ const Muyu = () => {
     }else{
       setAutoClickInterval(setInterval(()=>{
         ref.current()
-      },500))
+      },1000))
     }
      
 
