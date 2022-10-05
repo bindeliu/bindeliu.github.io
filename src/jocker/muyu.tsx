@@ -11,6 +11,7 @@ const Muyu = () => {
   const [audioState, audioToggle] = useAudio(muyuBgm, { loop: false });
 
   const clickMuyu = () => {
+    console.log(clickState,audioState)
     if (clickState) return;
 
     audioToggle();
@@ -21,7 +22,7 @@ const Muyu = () => {
 
     setTimeout(() => {
       setClickState(false);
-    }, 500);
+    }, 200);
   };
 
   const clearNumber = (e: React.MouseEvent) => {
@@ -47,9 +48,9 @@ const Muyu = () => {
         佛缘+1
       </div>
       <div className={["muyu", clickState ? "clicked" : ""].join(" ")}></div>
-      <div className="btn" onClick={clearNumber}>
+      {/* <div className="btn" onClick={clearNumber}>
         计数清0
-      </div>
+      </div> */}
     </div>
   );
 };

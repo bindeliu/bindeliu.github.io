@@ -10,11 +10,20 @@ export const useAudio = (url: string, options: Partial<HTMLAudioElement>) => {
   const [loading, setLoading] = useState(true); // 加载情况
 
   const [audio] = useState(new Audio(url));
+  
   audio.loop = options.loop || false
   audio.controls = options.controls || false;
-  audio.onload = 
+  audio.ontimeupdate = (event:Event)=>{
+    console.log('duration',audio.currentTime)
+    if(audio.currentTime >=0.3){
+      audio.currentTime = 0.1;
+      audio.pause();
+      setPlaying(false)
+    }
+  }
   audio.oncanplaythrough = (env: Event) => {
-    console.log(env)
+    //console.log(audio.duration)
+   
     setLoading(false);
   };
   const playerToggle = () => {
@@ -23,7 +32,13 @@ export const useAudio = (url: string, options: Partial<HTMLAudioElement>) => {
   };
 
   useEffect(() => {
-    playing ? audio.play() : audio.pause();
+    if(playing){
+       audio.currentTime = 0.1 ;
+       audio.play()
+    }else{
+      audio.pause();
+      setPlaying(false)
+    }
   }, [audio, playing]);
 
   useEffect(() => {
